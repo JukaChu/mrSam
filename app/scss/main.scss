@@ -25,6 +25,7 @@ body {
   min-height: 100%;
   flex-grow: 1;
   font-size: 16px;
+  min-width: 350px;
 
   &.no-scroll {
     overflow: hidden;
@@ -79,6 +80,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 10;
+  box-shadow: 1px 3px 7px rgba(0, 0, 0, 0.12);
 }
 
 main {
@@ -507,6 +509,38 @@ main {
     position: relative;
   }
 
+  &.full-banner--second {
+    .text-part {
+      a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+
+        img {
+          margin-right: 15px;
+        }
+
+        span {
+          font-family: $main-font;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 1em;
+          line-height: 125%;
+          color: #FFFFFF;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      padding-top: 40px;
+      flex-direction: column;
+
+    }
+  }
+
 }
 
 .text-part {
@@ -562,6 +596,11 @@ main {
 }
 
 .main-products {
+  width: 100%;
+  background: #f5f5f5;
+}
+
+.main-products-banner {
   width: 100%;
   background: #f5f5f5;
 }
@@ -1489,6 +1528,7 @@ input[type=number] {
       height: 44px;
       width: 44px;
       cursor: pointer;
+
       &:hover {
         border-color: #C68C40;
       }
@@ -1529,6 +1569,7 @@ input[type=number] {
 
   .buy-btn {
     margin-right: 20px;
+
     &:last-child {
       margin-right: 0;
     }
@@ -1553,20 +1594,25 @@ input[type=number] {
   line-height: 125%;
   background: $white;
   transition: background-color 0.3s ease, color 0.3s ease;
+
   svg {
     margin-right: 15px;
+
     path, ellipse {
       fill: $white;
       transition: fill 0.3s ease;
     }
   }
+
   &.buy-btn--orange {
     background: #C68C40;
     color: $white;
+
     &:hover {
       background: $white;
       color: #C68C40;
       transition: background-color 0.3s ease, color 0.3s ease;
+
       svg {
         path, ellipse {
           fill: #C68C40;
@@ -1575,9 +1621,11 @@ input[type=number] {
       }
     }
   }
+
   &.buy-btn--white {
     background: $white;
     color: #C68C40;
+
     &:hover {
       background: #C68C40;
       color: $white;
@@ -1595,7 +1643,8 @@ input[type=number] {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  li  {
+
+  li {
     font-family: $main-font;
     font-style: normal;
     font-weight: normal;
@@ -1604,9 +1653,11 @@ input[type=number] {
     color: #383838;
     position: relative;
     margin-bottom: 15px;
+
     &:last-child {
       margin-bottom: 0;
     }
+
     &::before {
       content: '';
       display: inline-block;
@@ -1616,9 +1667,8 @@ input[type=number] {
       background: #c68c40;
       box-shadow: 0 0 0 5px rgba(198, 140, 64, 0.2);
       position: absolute;
-      top: 50%;
+      top: 7px;
       left: -40px;
-      transform: translate(0, -50%);
 
     }
   }
@@ -1631,6 +1681,7 @@ input[type=number] {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+
   > span {
     font-family: $main-font;
     font-style: normal;
@@ -1642,6 +1693,7 @@ input[type=number] {
     display: inline-block;
     margin-bottom: 20px;
   }
+
   > p {
     font-family: $main-font;
     font-style: normal;
@@ -1650,6 +1702,7 @@ input[type=number] {
     line-height: 125%;
     color: #8B8B8B;
   }
+
   ul {
     width: 100%;
     display: flex;
@@ -1659,15 +1712,18 @@ input[type=number] {
     list-style: none;
     margin: 40px 0 0;
     padding: 0;
+
     li {
       width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       margin-bottom: 15px;
+
       &:last-child {
         margin-bottom: 0;
       }
+
       p, span {
         width: 50%;
         display: inline-block;
@@ -1679,10 +1735,265 @@ input[type=number] {
         text-transform: uppercase;
         color: #383838;
       }
+
       span {
         color: #8B8B8B;
       }
     }
+  }
+}
+
+.faq {
+  width: 100%;
+  background: #F5F5F5;
+}
+
+.faq-line {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+}
+
+.faq-container {
+  width: 100%;
+  padding: 90px 0 110px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.faq-left {
+  width: 27%;
+  margin-right: 137px;
+  box-sizing: border-box;
+
+  ul {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    li {
+      width: 100%;
+      padding: 20px 0;
+      box-sizing: border-box;
+      font-family: $main-font;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 125%;
+      cursor: pointer;
+      color: #383838;
+      text-transform: uppercase;
+      border-bottom: 1px solid #D4D4D4;
+
+      &.active {
+        color: #C68C40;
+      }
+    }
+  }
+}
+
+.faq-right {
+  width: calc((100% - 27%) - 137px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.faq-tab {
+  width: 100%;
+  max-width: 450px;
+  display: none;
+
+  > span {
+    font-family: $main-font;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 125%;
+    color: #383838;
+    border-bottom: 1px solid #D4D4D4;
+    padding-bottom: 20px;
+    width: 100%;
+    text-transform: uppercase;
+    display: none;
+
+    &.active {
+      color: #C68C40;
+    }
+  }
+
+  &.active {
+    display: block;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      border-bottom: 1px solid #D4D4D4;
+
+      span {
+        font-family: $main-font;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 125%;
+        display: inline-flex;
+        align-items: center;
+        color: #383838;
+        padding: 20px 0;
+        box-sizing: border-box;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        &::before {
+          content: '';
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border: 2px solid #8B8B8B;
+          border-right: none;
+          border-bottom: none;
+          margin-right: 26px;
+          transform: rotate(-135deg);
+          transition: transform 0.3s ease;
+
+        }
+
+        &.open {
+          &::before {
+            border-color: #C68C40;
+            transform: rotate(45deg);
+          }
+        }
+
+        &.open + div {
+          display: flex;
+        }
+      }
+
+      div {
+        display: none;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding-bottom: 20px;
+        box-sizing: border-box;
+
+        p {
+          font-family: $main-font;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 125%;
+          color: #8B8B8B;
+          margin-bottom: 6px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.products__all-list {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .products-line {
+    width: 100%;
+    .products-list {
+      padding-bottom: 46px;
+      padding-top: 0;
+    }
+
+    &:first-child {
+      .products-list {
+        padding-top: 46px;
+      }
+    }
+  }
+
+}
+
+.products-content__banner {
+  width: 100%;
+  position: relative;
+  .container {
+    position: relative;
+    a {
+      text-decoration: none;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      padding-top: 40px;
+      img {
+        margin-right: 15px;
+      }
+      span {
+        font-family: $main-font;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1em;
+        line-height: 125%;
+        color: #fff;
+      }
+    }
+  }
+  .products-content {
+    padding: 45px 0 225px;
+    position: relative;
+    h2 {
+      color: $white;
+    }
+  }
+}
+
+.prod-hero-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.main-products-banner {
+  > .container {
+    margin-top: -277px;
   }
 }
 

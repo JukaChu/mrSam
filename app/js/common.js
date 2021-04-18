@@ -174,12 +174,22 @@ function handleTouchMoveProd(evt) {
 
 window.addEventListener('resize', () => {
     if (window.innerWidth > 768) {
+        if (!prodListMain) {
+
+        } else {
+            prodListMain.style.transform = `translate(0, 0) translate(0, 0)`;
+        }
+
         blogListMain.style.transform = `translate(0, 0) translate(0, 0)`;
-        prodListMain.style.transform = `translate(0, 0) translate(0, 0)`;
         // currentSlideLegend = 0;
     } else {
+        if (!prodListMain) {
+
+        } else {
+            prodListMain.style.transform = `translate(-${startPosProd * 50}%, 0) translate(-${startPosNews * 20}px, 0)`;
+
+        }
         blogListMain.style.transform = `translate(-${startPosNews * 100}%, 0) translate(-${startPosNews * 20}px, 0)`;
-        prodListMain.style.transform = `translate(-${startPosProd * 50}%, 0) translate(-${startPosNews * 20}px, 0)`;
 
     }
 });
@@ -209,3 +219,42 @@ function ifHaveAmountChange() {
 }
 
 ifHaveAmountChange();
+
+let faqTabs = [...document.querySelectorAll('.faq-tab ul li span')];
+let faqLeft = [...document.querySelectorAll('.faq-left ul li')];
+let tabFaq = [...document.querySelectorAll('.faq-tab')];
+let tabFaqSpan = [...document.querySelectorAll('.faq-tab > span')];
+
+function openFaqTabs() {
+    if(!faqTabs.length) {
+
+    } else {
+        faqTabs.forEach((tb) => {
+            tb.addEventListener('click', () => {
+                tb.classList.toggle('open');
+            })
+        });
+        faqLeft.forEach((tab, k) => {
+            tab.addEventListener('click', () => {
+                document.querySelector('.faq-left li.active').classList.remove('active');
+                tab.classList.add('active');
+                document.querySelector('.faq-tab.active').classList.remove('active');
+                document.querySelector('.faq-tab > span.active').classList.remove('active');
+
+                tabFaq[k].classList.add('active');
+                document.querySelector('.faq-tab.active > span').classList.add('active');
+
+            })
+        });
+        tabFaqSpan.forEach((bt, l) => {
+            bt.addEventListener('click', () => {
+                document.querySelector('.faq-tab > span.active').classList.remove('active');
+                bt.classList.add('active');
+                document.querySelector('.faq-left li.active').classList.remove('active');
+                faqLeft[l].classList.add('active');
+
+            })
+        })
+    }
+}
+openFaqTabs();
