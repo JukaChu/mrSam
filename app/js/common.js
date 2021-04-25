@@ -175,21 +175,40 @@ function handleTouchMoveProd(evt) {
 window.addEventListener('resize', () => {
     if (window.innerWidth > 768) {
         if (!prodListMain) {
+            if (!blogListMain) {
 
+            } else {
+                blogListMain.style.transform = `translate(0, 0) translate(0, 0)`;
+
+            }
         } else {
             prodListMain.style.transform = `translate(0, 0) translate(0, 0)`;
+            if (!blogListMain) {
+
+            } else {
+                blogListMain.style.transform = `translate(0, 0) translate(0, 0)`;
+
+            }
         }
 
-        blogListMain.style.transform = `translate(0, 0) translate(0, 0)`;
         // currentSlideLegend = 0;
     } else {
         if (!prodListMain) {
+            if (!blogListMain) {
 
+            } else {
+                blogListMain.style.transform = `translate(-${startPosNews * 100}%, 0) translate(-${startPosNews * 20}px, 0)`;
+
+            }
         } else {
             prodListMain.style.transform = `translate(-${startPosProd * 50}%, 0) translate(-${startPosNews * 20}px, 0)`;
+            if (!blogListMain) {
 
+            } else {
+                blogListMain.style.transform = `translate(-${startPosNews * 100}%, 0) translate(-${startPosNews * 20}px, 0)`;
+
+            }
         }
-        blogListMain.style.transform = `translate(-${startPosNews * 100}%, 0) translate(-${startPosNews * 20}px, 0)`;
 
     }
 });
