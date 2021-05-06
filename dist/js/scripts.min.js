@@ -137,25 +137,27 @@ function handleTouchMoveProd(evt) {
             console.log(prodBlocksScreen);
             console.log(startPosProd);
             if (startPosProd === prodBlocksScreen - 2) {
+                console.log(prodBlocksScreen + ' length');
                 startPosProd = -1;
-                console.log(startPosProd + ' posle-swipe');
-                prodListMain.style.transform = `translate(${-startPosProd * 50}%, 0) translate(-${startPosNews * 20}px, 0)`;
+                console.log(startPosProd + ' posle-swipe left');
+                prodListMain.style.transform = `translate(${startPosProd * -50}%, 0) translate(${startPosProd * -20}px, 0)`;
 
             } else {
                 startPosProd = startPosProd + 1;
-                console.log(startPosProd + ' posle-swipe');
-                prodListMain.style.transform = `translate(-${startPosProd * 50}%, 0) translate(-${startPosNews * 20}px, 0)`;
+                console.log(startPosProd + ' posle-swipe left');
+                prodListMain.style.transform = `translate(-${startPosProd * 50}%, 0) translate(-${startPosProd * 20}px, 0)`;
             }
 
         } else {
             if (startPosProd === -1) {
                 startPosProd = prodBlocksScreen - 2;
-                prodListMain.style.transform = `translate(-${startPosProd * 50}%, 0) translate(-${startPosNews * 20}px, 0)`;
+                console.log(startPosProd + ' posle-swipe right');
+                prodListMain.style.transform = `translate(-${startPosProd * 50}%, 0) translate(-${startPosProd * 20}px, 0)`;
 
             } else {
                 startPosProd = startPosProd - 1;
-
-                prodListMain.style.transform = `translate(${-startPosProd * 50}%, 0) translate(-${startPosNews * 20}px, 0)`;
+                console.log(startPosProd + ' posle-swipe right');
+                prodListMain.style.transform = `translate(${startPosProd * -50}%, 0) translate(${startPosProd * -20}px, 0)`;
             }
             /* right swipe */
         }
