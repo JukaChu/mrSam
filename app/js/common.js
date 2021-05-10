@@ -3,21 +3,30 @@ let burgerMenu = document.querySelector('.burger-menu');
 burgerMenu.addEventListener('click', () => {
     burgerMenu.classList.toggle('open');
     document.body.classList.toggle('no-scroll');
+    if (document.querySelector('.modal-window.open')) {
+        document.querySelector('.modal-window.open').classList.remove('open');
+    }
 });
 
 document.body.addEventListener('click', (e) => {
     let itm = e.target;
     if (!itm.closest('header')) {
-        document.body.classList.remove('no-scroll');
-        burgerMenu.classList.remove('open');
+        if (!document.querySelector('.modal-window.open')) {
+            document.body.classList.remove('no-scroll');
+            burgerMenu.classList.remove('open');
+        } else {
+
+        }
+
     }
 })
 
 
 let blogListMain = document.querySelector('.blog-list');
-let blogListScroll = document.querySelector('.blog-container');
+let blogListScroll = document.querySelector('.blog .blog-container');
 let newsBlocksScreen = [...document.querySelectorAll('.blog-list .blog-item')].length;
 let startPosNews = 0;
+
 function ifBlogListContains() {
     if (!blogListScroll) {
 
@@ -27,6 +36,7 @@ function ifBlogListContains() {
 
     }
 }
+
 ifBlogListContains();
 
 var xDown2 = null;
@@ -44,7 +54,7 @@ function handleTouchStart(evt) {
 };
 
 function handleTouchMove(evt) {
-    if ( ! xDown2 || ! yDown2 ) {
+    if (!xDown2 || !yDown2) {
         return;
     }
     var xUp2 = evt.touches[0].clientX;
@@ -53,8 +63,8 @@ function handleTouchMove(evt) {
     var xDiff2 = xDown2 - xUp2;
     var yDiff2 = yDown2 - yUp2;
 
-    if ( Math.abs( xDiff2 ) > Math.abs( yDiff2 ) ) {/*most significant*/
-        if ( xDiff2 > 0 ) {
+    if (Math.abs(xDiff2) > Math.abs(yDiff2)) {/*most significant*/
+        if (xDiff2 > 0) {
             /* left swipe */
             if (startPosNews === newsBlocksScreen - 1) {
                 startPosNews = 0;
@@ -78,7 +88,7 @@ function handleTouchMove(evt) {
             /* right swipe */
         }
     } else {
-        if ( yDiff2 > 0 ) {
+        if (yDiff2 > 0) {
             /* up swipe */
         } else {
             /* down swipe */
@@ -90,12 +100,11 @@ function handleTouchMove(evt) {
 };
 
 
-
-
 let prodListMain = document.querySelector('.products-list');
 let prodScrollCont = document.querySelector('.main-products');
 let prodBlocksScreen = [...document.querySelectorAll('.products-list .single-product')].length;
 let startPosProd = 0;
+
 function ifProdListContains() {
     if (!prodScrollCont) {
 
@@ -105,6 +114,7 @@ function ifProdListContains() {
 
     }
 }
+
 ifProdListContains();
 
 var xDown3 = null;
@@ -122,7 +132,7 @@ function handleTouchStartProd(evt) {
 };
 
 function handleTouchMoveProd(evt) {
-    if ( ! xDown3 || ! yDown3 ) {
+    if (!xDown3 || !yDown3) {
         return;
     }
     var xUp3 = evt.touches[0].clientX;
@@ -131,8 +141,8 @@ function handleTouchMoveProd(evt) {
     var xDiff3 = xDown3 - xUp3;
     var yDiff3 = yDown3 - yUp3;
 
-    if ( Math.abs( xDiff3 ) > Math.abs( yDiff3 ) ) {/*most significant*/
-        if ( xDiff3 > 0 ) {
+    if (Math.abs(xDiff3) > Math.abs(yDiff3)) {/*most significant*/
+        if (xDiff3 > 0) {
             /* left swipe */
             console.log(prodBlocksScreen);
             console.log(startPosProd);
@@ -162,7 +172,7 @@ function handleTouchMoveProd(evt) {
             /* right swipe */
         }
     } else {
-        if ( yDiff3 > 0 ) {
+        if (yDiff3 > 0) {
             /* up swipe */
         } else {
             /* down swipe */
@@ -228,7 +238,7 @@ function ifHaveAmountChange() {
             btns.forEach((btn) => {
                 btn.addEventListener('click', () => {
                     if (btn.classList.contains('btn-value--minus')) {
-                        input.value = Number(input.value) -1;
+                        input.value = Number(input.value) - 1;
                     } else {
                         input.value = Number(input.value) + 1;
                     }
@@ -247,7 +257,7 @@ let tabFaq = [...document.querySelectorAll('.faq-tab')];
 let tabFaqSpan = [...document.querySelectorAll('.faq-tab > span')];
 
 function openFaqTabs() {
-    if(!faqTabs.length) {
+    if (!faqTabs.length) {
 
     } else {
         faqTabs.forEach((tb) => {
@@ -278,4 +288,53 @@ function openFaqTabs() {
         })
     }
 }
+
 openFaqTabs();
+
+
+let modalWindows = [...document.querySelectorAll('.modal-window')];
+let modalCloser = [...document.querySelectorAll('.modal-close')];
+let modalLogin = [...document.querySelectorAll('.header__login a')];
+let modalOneClick = [...document.querySelectorAll('.product-info__buy .buy-btn--white')];
+
+function ifHaveModals() {
+    if (!modalWindows.length) {
+
+    } else {
+        modalWindows.forEach((wind) => {
+            wind.addEventListener('click', () => {
+                wind.classList.remove('open');
+                document.body.classList.remove('no-scroll');
+                wind.querySelector('.modal-container').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
+
+            })
+        });
+        modalCloser.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                btn.closest('.modal-window').classList.remove('open');
+                document.body.classList.remove('no-scroll');
+            })
+        });
+        modalLogin.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelector('.modal-window--login').classList.add('open');
+                document.body.classList.add('no-scroll');
+            })
+        })
+        modalOneClick.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelector('.modal-window--click').classList.add('open');
+                document.body.classList.add('no-scroll');
+            })
+        })
+
+    }
+};
+ifHaveModals();
+
+
+
