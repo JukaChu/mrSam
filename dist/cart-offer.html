@@ -29,7 +29,7 @@
 
                 </div>
                 <div class="header__login">
-                    <a href="#"><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <a href="#" class="login-btn"><svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0)">
                             <path d="M8.9 7L7.772 8.10786L11.436 11.7143H-1.5V13.2857H11.436L7.764 16.8921L8.9 18L14.5 12.5L8.9 7Z"
                             />
@@ -413,10 +413,12 @@
                     </form>
                     <div class="doubled-form">
                         <a href="#" class="buy-btn buy-btn--grey">
-                            <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.35742 14L8.36457 12.9928L5.09314 9.71426H16.6431V8.28568H5.09314L8.37171 5.00711L7.35742 3.99997L2.35742 8.99997L7.35742 14Z"
                                       fill="white"/>
-                            </svg>До магазину
+                            </svg>
+                            До магазину
                         </a>
                         <button class="buy-btn buy-btn--orange">
                             Замовити
@@ -424,8 +426,56 @@
                     </div>
 
 
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal-window modal-window--to-cart">
+    <div class="modal-container">
+        <div class="modal-content">
+            <div class="modal-close">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"
+                    />
+                </svg>
+            </div>
+
+            <div class="modal-main modal-main--to-cart">
+                <div class="modal-cart__left">
+                    <div class="img">
+                        <img src="./img/banka-mod.png" alt="">
+                    </div>
 
                 </div>
+                <div class="modal-cart__right">
+                    <span>Додати до кошика</span>
+                    <h2>Iкра чорна, <br>осетрова</h2>
+                    <p>Сибiрський осетр</p>
+                    <p> Маса нетто: 100 г</p>
+                    <div class="product-info__amount">
+                        <label for="">
+                            <button class="btn-value--minus btn-value">-</button>
+                            <input type="number" value="1">
+                            <button class="btn-value--plus btn-value">+</button>
+                        </label>
+                    </div>
+                    <div class="product-info__to-cart">
+                        <button class="buy-btn buy-btn--grey">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.42859 3.57141L7.43573 4.57855L4.1643 7.85712L15.7143 7.85712V9.2857L4.1643 9.2857L7.44288 12.5643L6.42859 13.5714L1.42859 8.57141L6.42859 3.57141Z"
+                                />
+                            </svg>
+                            До магазину</button>
+                        <button class="buy-btn buy-btn--orange"><svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M17.125 5.00004H15.375C15.375 2.70004 13.415 0.833374 11 0.833374C8.585 0.833374 6.625 2.70004 6.625 5.00004H4.875C3.9125 5.00004 3.125 5.75004 3.125 6.66671V16.6667C3.125 17.5834 3.9125 18.3334 4.875 18.3334H17.125C18.0875 18.3334 18.875 17.5834 18.875 16.6667V6.66671C18.875 5.75004 18.0875 5.00004 17.125 5.00004ZM11 2.50004C12.4525 2.50004 13.625 3.61671 13.625 5.00004H8.375C8.375 3.61671 9.5475 2.50004 11 2.50004ZM17.125 16.6667H4.875V6.66671H17.125V16.6667Z"></path>
+                            <ellipse cx="8.375" cy="9.16671" rx="0.875" ry="0.833333"></ellipse>
+                            <ellipse cx="13.625" cy="9.16671" rx="0.875" ry="0.833333"></ellipse>
+                        </svg>До кошика</button>
+                    </div>
+                </div>
+
             </div>
 
         </div>

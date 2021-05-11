@@ -11,15 +11,20 @@ burgerMenu.addEventListener('click', () => {
 document.body.addEventListener('click', (e) => {
     let itm = e.target;
     if (!itm.closest('header')) {
-        if (!document.querySelector('.modal-window.open')) {
-            document.body.classList.remove('no-scroll');
-            burgerMenu.classList.remove('open');
-        } else {
+        if (itm.closest('.modal-container')) {
 
+        } else {
+            if (!document.querySelector('.modal-window.open')) {
+                document.body.classList.remove('no-scroll');
+                burgerMenu.classList.remove('open');
+            } else {
+
+            }
         }
 
+
     }
-})
+});
 
 
 let blogListMain = document.querySelector('.blog-list');
@@ -293,24 +298,34 @@ openFaqTabs();
 
 
 let modalWindows = [...document.querySelectorAll('.modal-window')];
+let modalContainers = [...document.querySelectorAll('.modal-container')];
 let modalCloser = [...document.querySelectorAll('.modal-close')];
 let modalLogin = [...document.querySelectorAll('.header__login a')];
+let modalReg = [...document.querySelectorAll('.no-account .buy-btn')];
 let modalOneClick = [...document.querySelectorAll('.product-info__buy .buy-btn--white')];
+let modalToCart = [...document.querySelectorAll('.product-info__buy .buy-btn--orange')];
 
 function ifHaveModals() {
     if (!modalWindows.length) {
 
     } else {
         modalWindows.forEach((wind) => {
-            wind.addEventListener('click', () => {
-                wind.classList.remove('open');
-                document.body.classList.remove('no-scroll');
-                wind.querySelector('.modal-container').addEventListener('click', (e) => {
-                    e.stopPropagation();
-                });
+            wind.addEventListener('click', (e) => {
+
+                    wind.classList.remove('open');
+                    document.body.classList.remove('no-scroll');
+
+
+
 
             })
         });
+        modalContainers.forEach((wind) => {
+            wind.addEventListener('click', (e) => {
+                    e.stopPropagation();
+            })
+        });
+
         modalCloser.forEach((btn) => {
             btn.addEventListener('click', () => {
                 btn.closest('.modal-window').classList.remove('open');
@@ -319,11 +334,26 @@ function ifHaveModals() {
         });
         modalLogin.forEach((btn) => {
             btn.addEventListener('click', (e) => {
+                if (btn.classList.contains('login-btn')) {
+                    e.preventDefault();
+                    document.querySelector('.modal-window--login').classList.add('open');
+                    document.body.classList.add('no-scroll');
+                }
+
+            });
+        });
+        modalReg.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+
                 e.preventDefault();
-                document.querySelector('.modal-window--login').classList.add('open');
+                document.querySelector('.modal-window.open').classList.remove('open');
+                document.querySelector('.modal-window--register').classList.add('open');
                 document.body.classList.add('no-scroll');
-            })
-        })
+
+
+            });
+        });
+
         modalOneClick.forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -331,10 +361,38 @@ function ifHaveModals() {
                 document.body.classList.add('no-scroll');
             })
         })
+        modalToCart.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelector('.modal-window--to-cart').classList.add('open');
+                document.body.classList.add('no-scroll');
+            })
+        })
 
     }
 };
 ifHaveModals();
+
+let tabsCabinet = [...document.querySelectorAll('.cabinet-tabs li')];
+let tabsCabinetTab = [...document.querySelectorAll('.cabinet-tab')];
+
+function changeTabCab() {
+    if (!tabsCabinet.length) {
+
+    } else {
+        tabsCabinet.forEach((btn, k) => {
+            btn.addEventListener('click', () => {
+                if (document.querySelector('.cabinet-tabs li.active')) {
+                    document.querySelector('.cabinet-tabs li.active').classList.remove('active');
+                    document.querySelector('.cabinet-tab.active').classList.remove('active');
+                }
+                btn.classList.add('active');
+                tabsCabinetTab[k].classList.add('active');
+            })
+        })
+    }
+};
+changeTabCab();
 
 
 
