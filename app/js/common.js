@@ -188,23 +188,137 @@ function handleTouchMoveProd(evt) {
     yDown3 = null;
 };
 
+//script scroll prod page
+
+// let prodListMain = document.querySelector('.products-list');
+let prodLineScroll = [...document.querySelectorAll('.products-line')];
+
+
+function ifProdListContains2() {
+    if (!prodLineScroll.length) {
+
+    } else {
+        let prodBlocksScreenLine = [...prodLineScroll[0].querySelectorAll('.products-line .products-list .single-product')].length;
+
+        prodLineScroll.forEach((line,k) => {
+            let startPosProd2 = 0;
+            line.addEventListener('touchstart', handleTouchStartProd2, false);
+            line.addEventListener('touchmove', handleTouchMoveProd2, false);
+            var xDown4 = null;
+            var yDown4 = null;
+
+            function getTouchesProd2(evt) {
+                return evt.touches ||             // browser API
+                    evt.originalEvent.touches; // jQuery
+            }
+
+            function handleTouchStartProd2(evt) {
+                const firstTouch = getTouchesProd(evt)[0];
+                xDown4 = firstTouch.clientX;
+                yDown4 = firstTouch.clientY;
+            };
+
+            function handleTouchMoveProd2(evt) {
+                if (!xDown4 || !yDown4) {
+                    return;
+                }
+                var xUp4 = evt.touches[0].clientX;
+                var yUp4 = evt.touches[0].clientY;
+
+                var xDiff4 = xDown4 - xUp4;
+                var yDiff4 = yDown4 - yUp4;
+
+                if (Math.abs(xDiff4) > Math.abs(yDiff4)) {/*most significant*/
+                    if (xDiff4 > 0) {
+                        /* left swipe */
+                        console.log(prodBlocksScreenLine + ' start of left swipe');
+                        console.log(startPosProd2);
+                        if (startPosProd2 === prodBlocksScreenLine - 2) {
+                            console.log(prodBlocksScreenLine + ' length');
+                            startPosProd2 = -1;
+                            console.log(startPosProd2 + ' posle-swipe left');
+                            line.querySelector('.products-list').style.transform = `translate(${startPosProd2 * -50}%, 0) translate(${startPosProd2 * -20}px, 0)`;
+
+                        } else {
+                            startPosProd2 = startPosProd2 + 1;
+                            console.log(startPosProd2 + ' posle-swipe left');
+                            line.querySelector('.products-list').style.transform = `translate(-${startPosProd2 * 50}%, 0) translate(-${startPosProd2 * 20}px, 0)`;
+                        }
+
+                    } else {
+                        if (startPosProd2 === -1) {
+                            startPosProd2 = prodBlocksScreenLine - 2;
+                            console.log(startPosProd2 + ' posle-swipe right');
+                            line.querySelector('.products-list').style.transform = `translate(-${startPosProd2 * 50}%, 0) translate(-${startPosProd2 * 20}px, 0)`;
+
+                        } else {
+                            startPosProd2 = startPosProd2 - 1;
+                            console.log(startPosProd2 + ' posle-swipe right');
+                            line.querySelector('.products-list').style.transform = `translate(${startPosProd2 * -50}%, 0) translate(${startPosProd2 * -20}px, 0)`;
+                        }
+                        /* right swipe */
+                    }
+                } else {
+                    if (yDiff4 > 0) {
+                        /* up swipe */
+                    } else {
+                        /* down swipe */
+                    }
+                }
+                /* reset values */
+                xDown4 = null;
+                yDown4 = null;
+                return startPosProd2;
+            };
+
+        });
+
+    }
+}
+
+ifProdListContains2();
+
 
 window.addEventListener('resize', () => {
     if (window.innerWidth > 768) {
         if (!prodListMain) {
             if (!blogListMain) {
+                if (!prodLineScroll.length) {
 
+                } else {
+                    prodLineScroll.forEach((line) => {
+                        line.querySelector('.products-list').style.transform = `translate(0, 0) translate(0, 0)`;
+                    })
+                }
             } else {
                 blogListMain.style.transform = `translate(0, 0) translate(0, 0)`;
+                if (!prodLineScroll.length) {
 
+                } else {
+                    prodLineScroll.forEach((line) => {
+                        line.querySelector('.products-list').style.transform = `translate(0, 0) translate(0, 0)`;
+                    })
+                }
             }
         } else {
             prodListMain.style.transform = `translate(0, 0) translate(0, 0)`;
             if (!blogListMain) {
+                if (!prodLineScroll.length) {
 
+                } else {
+                    prodLineScroll.forEach((line) => {
+                        line.querySelector('.products-list').style.transform = `translate(0, 0) translate(0, 0)`;
+                    })
+                }
             } else {
                 blogListMain.style.transform = `translate(0, 0) translate(0, 0)`;
+                if (!prodLineScroll.length) {
 
+                } else {
+                    prodLineScroll.forEach((line) => {
+                        line.querySelector('.products-list').style.transform = `translate(0, 0) translate(0, 0)`;
+                    })
+                }
             }
         }
 
@@ -393,6 +507,8 @@ function changeTabCab() {
     }
 };
 changeTabCab();
+
+
 
 
 
