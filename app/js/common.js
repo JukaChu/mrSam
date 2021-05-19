@@ -508,6 +508,86 @@ function changeTabCab() {
 };
 changeTabCab();
 
+//preloader
+
+let preloaderBlock = document.querySelector('.preloader');
+let homeHeroH = document.querySelector('.home__hero .hero-content h1');
+let homeHeroBtn = document.querySelector('.home__hero .hero-content .btn-line');
+let heroImgHome = [...document.querySelectorAll('.hero__img')];
+let heroAboutLi = [...document.querySelectorAll('.hero__about ul li')];
+
+
+function startAnimLoading() {
+    preloaderBlock.classList.add('loaded');
+
+    if (!heroImgHome.length) {
+
+    } else {
+        homeHeroH.classList.add('loaded');
+        homeHeroBtn.classList.add('loaded');
+        heroAboutLi.forEach((li, l) => {
+            let timer = 0;
+            if (l === 0) {
+                timer = 600;
+            }
+            if (l === 1) {
+                timer = 400;
+            }
+            if (l === 2) {
+                timer = 0;
+            }
+            setTimeout(() => {
+                li.classList.add('loaded');
+            }, timer);
+
+        })
+        setTimeout(() => {
+
+            heroImgHome.forEach((img, k) => {
+                if (k === 1 || k === 2) {
+                    setTimeout(() => {
+                        img.classList.add('loaded');
+                    }, 200)
+                } else {
+                    img.classList.add('loaded');
+                }
+
+
+            })
+        }, 300)
+
+    }
+    setTimeout(() => {
+        preloaderBlock.classList.add('anim-end');
+        preloaderBlock.remove();
+    }, 2000);
+
+}
+function ifLoadedContent() {
+    if (!preloaderBlock) {
+
+    } else {
+        if (!heroImgHome.length) {
+
+        } else {
+            heroImgHome.forEach((imgAnim) => {
+                imgAnim.classList.add('loading');
+            });
+            heroAboutLi.forEach((li) => {
+                li.classList.add('loading');
+            });
+            homeHeroH.classList.add('loading');
+            homeHeroBtn.classList.add('loading');
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(startAnimLoading, 600)
+
+        })
+    }
+}
+
+ifLoadedContent();
+
 
 
 

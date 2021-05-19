@@ -287,6 +287,7 @@ main {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  overflow: hidden;
 }
 
 .hero__top {
@@ -310,6 +311,7 @@ main {
   z-index: 1;
   box-sizing: border-box;
   padding: 15px 0;
+
 }
 
 .hero-content {
@@ -405,22 +407,62 @@ main {
   &--2 {
     top: 35px;
     left: 29%;
+
+    &.loading {
+      transform: translate(0, -180px);
+      opacity: 0.2;
+    }
+    &.loaded {
+      transform: translate(0, 0);
+      opacity: 1;
+      transition-delay: 2s;
+      transition: transform 1s ease, opacity 0.8s ease;
+    }
   }
 
   &--3 {
     right: 2%;
     top: 75px;
+
+    &.loading {
+      transform: translate(0, -180px);
+      opacity: 0.2;
+    }
+    &.loaded {
+      transform: translate(0, 0);
+      opacity: 1;
+      transition: transform 1s ease, opacity 0.8s ease;
+    }
   }
 
   &--4 {
     bottom: 0;
     right: 0;
+    &.loading {
+      transform: translate(160px, -30px);
+      opacity: 0.2;
+    }
+    &.loaded {
+      transform: translate(0, 0);
+      opacity: 1;
+      transition: transform 1.4s ease, opacity 1.2s ease;
+    }
   }
 
   &--5 {
     top: 100%;
     left: 0;
+    &.loading {
+      transform: translate(-120px, -50px);
+      opacity: 0.2;
+    }
+    &.loaded {
+      transform: translate(0, 0);
+      opacity: 1;
+      transition: transform 1.4s ease, opacity 1.2s ease;
+    }
   }
+
 
   &--6 {
     top: 70%;
@@ -470,6 +512,25 @@ main {
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
+      &.loading {
+        transform: translate(0, 200px);
+        opacity: 0;
+
+      }
+      &.loaded {
+        transform: translate(0, 0);
+        opacity: 1;
+        &:nth-child(1) {
+          transition: transform 1.0s ease, opacity 0.6s ease;
+        }
+        &:nth-child(2) {
+          transition: transform 1.2s ease, opacity 0.8s ease;
+        }
+        &:nth-child(3) {
+          transition: transform 1.6s ease, opacity 1.2s ease;
+        }
+
+      }
 
       p {
         font-family: $main-font;
@@ -4510,6 +4571,80 @@ input[type=number] {
     }
   }
 
+}
+
+.preloader {
+  position: fixed;
+  z-index: 3000;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  &::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: '';
+    background: #000000;
+    z-index: 1;
+    transition: transform 0.5s ease-in-out;
+
+  }
+  .img-preloader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    width: 136px;
+    height: 136px;
+  }
+  &.loaded {
+    //opacity: 0;
+    pointer-events: none;
+    &::after {
+      transform: translate(0, -110%);
+    }
+    .img-preloader {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 2s ease, visibility 2s ease;
+    }
+  }
+  &.anim-end {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.home__hero .hero-content h1 {
+  &.loading {
+    transform: translate(0, 140px);
+
+  }
+  &.loaded {
+    transform: translate(0, 0);
+    transition: transform 1.6s ease, opacity 0.8s ease;
+  }
+}
+
+.home__hero .hero-content {
+  .btn-line {
+    &.loading {
+      transform: translate(0, 60px);
+      opacity: 0;
+
+    }
+    &.loaded {
+      transform: translate(0, 0);
+      opacity: 1;
+      transition: transform 1.6s ease, opacity 1.2s ease;
+    }
+  }
 }
 
 @import "media"; // Always at the end
